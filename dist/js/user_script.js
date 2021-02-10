@@ -4,7 +4,7 @@ if (valor_cookie == "user") {
 
     document.getElementById("cerrar_sesion").onclick = function() {
         //Insertar datos de LS en IndexedDB?
-        eliminarUnaCookie("sesion");
+        eliminarUnaCookieConRuta("sesion");
         eliminarClaveValor("datos_json");
         // limpiarLS();
         alert("Sesión cerrada");

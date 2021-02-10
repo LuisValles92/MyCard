@@ -2,7 +2,7 @@
 var valor_cookie = leerUnaCookie("sesion");
 if (valor_cookie == "admin") {
     document.getElementById("cerrar_sesion").onclick = function() {
-        eliminarUnaCookie("sesion");
+        eliminarUnaCookieConRuta("sesion");
         alert("Sesión cerrada");
         location.href = "../..";
     };

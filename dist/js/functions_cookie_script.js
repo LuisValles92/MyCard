@@ -9,7 +9,7 @@ function establecerUnaCookie(nombre, valor, dias = 0) {
     document.cookie = cadena;
 }
 
-function eliminarUnaCookie(nombre) {
+function eliminarUnaCookieConRuta(nombre) {
     document.cookie = nombre + "=; max-age=0;path=/;";
 }
 
