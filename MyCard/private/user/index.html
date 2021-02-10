@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚇ Sesión Iniciada</title>
+    <link rel="icon" type="image/png" href="../../images/icon.PNG">
+    <link rel="stylesheet" type="text/css" href="../../dist/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <!-- Librería jQuery -->
+    <script type="application/javascript" src="../../resources/jquery-3.5.1.js"></script>
+</head>
+
+<body>
+    <nav class="private-nav">
+        <input class="mtopzero" type="button" id="cerrar_sesion" value="CERRAR SESIÓN">
+    </nav>
+    <main class="private-main">
+        <fieldset id="fs_perfil">
+            <legend>PERFIL</legend>
+            <img alt="User image">
+            <p class="usuario-nick">NICK</p>
+            <p>NOMBRE</p>
+            <p>PAÍS</p>
+            <p>CORREO</p>
+        </fieldset>
+        <!-- <fieldset id="fs_saldo" class="saldo-fs-user">
+            <legend>SALDO</legend>
+            <p>TOTAL: <span>X</span>€</p>
+            <input type="range" class="range-user" id="rango_saldo" onchange="mostrarEuroSaldoUser();" min="0" max="15" step="5" value="0">
+            <p id="euro_saldo">0€</p>
+            <input type="button" class="nav-sub-user cwhite sub-center" id="ingresar_saldo" value="INGRESAR">
+        </fieldset> -->
+    </main>
+    <script type="application/javascript" src="../../dist/js/functions_cookie_script.js"></script>
+    <script type="application/javascript" src="../../dist/js/functions_localstorage_script.js"></script>
+    <script type="application/javascript" src="../../dist/js/user_script.js"></script>
+</body>
+
+</html>

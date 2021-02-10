@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⌂ MyCard</title>
+    <link rel="icon" type="image/png" href="images/icon.PNG">
+    <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <img class="logo-img" src="images/logo.PNG" alt="Logo de MyCard">
+        <div class="main-div" id="login-div">
+            <h3>LOG IN</h3>
+            <form>
+                <label>CORREO ELECTRÓNICO:</label>
+                <input type="text" id="login_correo">
+                <label>PASSWORD:</label>
+                <!-- <u>¿Olvidó la password?</u> -->
+                <input type="password" id="login_password">
+                <input type="button" id="login" value="LOG IN">
+                <input type="reset" value="RESTABLECER">
+                <input class="bc-gray" type="button" id="formulario_registro" value="¿Nuevo en MyCard? Crear una cuenta">
+            </form>
+        </div>
+        <div class="main-div bc-gray" id="registro-div">
+            <h3>FORMULARIO DE REGISTRO</h3>
+            <form>
+                <label>* CORREO ELECTRÓNICO: (x@x.xx)</label>
+                <input required type="text" id="correo">
+                <label>PASSWORD: (De 7 a 14 caracteres y de al menos 2 may., 3 min. y 2 núm.)</label>
+                <input required type="password" id="pass">
+                <label>* NICK: (De 4 a 20 caracteres (_-) sin acentos y sin espacios)</label>
+                <input required type="text" id="nick">
+                <label>NOMBRE: (El primer caracter de cada palabra en mayúscula, permite acentos y espacios)</label>
+                <input required type="text" id="nombre">
+                <label>PAÍS:</label>
+                <select id="pais"></select>
+                <label class="d-block">SEXO:</label>
+                <input type="radio" name="sexo" value="H" checked="checked">
+                <label>HOMBRE</label>
+                <input type="radio" name="sexo" value="M">
+                <label>MUJER</label>
+                <label class="d-block">IMAGEN: (Arrastre su avatar preferido sobre el cuadro gris)</label>
+                <div class="imagen-div" id="imagen">
+                    <div class="avatar-div" id="avatares">
+                        <img class="avatar-img" src="images/avatars/man/M1.PNG" alt="Avatar de hombre 1" id="H1">
+                        <img class="avatar-img" src="images/avatars/man/M2.PNG" alt="Avatar de hombre 2" id="H2">
+                        <img class="avatar-img" src="images/avatars/man/M3.PNG" alt="Avatar de hombre 3" id="H3">
+                        <img class="avatar-img" src="images/avatars/man/M4.PNG" alt="Avatar de hombre 4" id="H4">
+                    </div>
+                    <div class="myavatar-div" id="myavatar"></div>
+                </div>
+                <input type="button" id="registrar" value="REGISTRAR">
+                <input type="button" id="registro_reset" value="RESTABLECER">
+                <input class="bcw-cg" type="button" id="formulario_login" value="Volver al LOG IN">
+            </form>
+        </div>
+    </main>
+    <script type="application/javascript" src="dist/js/functions_cookie_script.js"></script>
+    <script type="application/javascript" src="dist/js/function_uuid_script.js"></script>
+    <script type="application/javascript" src="dist/js/functions_localstorage_script.js"></script>
+    <script type="application/javascript" src="dist/js/main_script.js"></script>
+</body>
+
+</html>

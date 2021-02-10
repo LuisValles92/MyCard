@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+select,
+input[type=button],
+input[type=reset] {
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  background-image: linear-gradient(to right, #26a59a, #673bb7);
+  font-size: 18px;
+  margin: 20px;
+}
+
+.admin-body {
+  background-image: linear-gradient(to right, gray, gray) !important;
+}
+
+.logo-img {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: block;
+  border-radius: 10px;
+  border: solid black;
+}
+
+.main-div {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 50px;
+  display: table;
+  width: 70%;
+  height: 1em;
+  border: dotted black;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.main-div h3 {
+  text-align: center;
+}
+
+/* responsive-form */
+input[type=text],
+input[type=password],
+select {
+  font-size: 18px;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid gainsboro;
+  border-radius: 4px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.d-block {
+  display: block;
+}
+
+input[type=button],
+input[type=reset] {
+  font-size: 18px;
+  color: #f5f5f5;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-weight: bold;
+  background-color: black;
+}
+input[type=button]:hover,
+input[type=reset]:hover {
+  opacity: 0.8;
+}
+
+.button {
+  float: none !important;
+  margin-bottom: 20px;
+}
+
+.bc-gray {
+  background-color: gray !important;
+}
+
+.avatar-img {
+  width: 125px;
+  height: 125px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.imagen-div {
+  display: flex;
+}
+
+.imagen-div div {
+  flex: 1;
+  position: relative;
+}
+
+.avatar-div {
+  border: solid black;
+  text-align: center;
+}
+
+.myavatar-div {
+  border: solid darkgray;
+}
+
+.myavatar-div img {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bcw-cg {
+  background-color: #f5f5f5 !important;
+  color: gray !important;
+}
+
+.private-nav {
+  height: 2.7em;
+}
+
+.private-main {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.mtopzero {
+  margin-top: 0 !important;
+}
+
+fieldset {
+  margin-bottom: 10px;
+  padding: 20px;
+  text-align: center;
+  font-size: 22px;
+}
+fieldset legend {
+  text-align: left;
+  font-weight: bold;
+}
+fieldset img {
+  width: 200px;
+  border-radius: 5px;
+}
+fieldset p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+fieldset .usuario-nick {
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=main.css.map */

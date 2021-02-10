@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+}
+
+body,
+select,
+input[type="button"],
+input[type="reset"] {
+    font-family: $fuente;
+}
+
+body {
+    background-image: linear-gradient(to right, $primary_color, $secondary_color);
+    font-size: 18px;
+    margin: 20px;
+}
+
+.admin-body {
+    background-image: linear-gradient(to right, gray, gray) !important;
+}
+
+.logo-img {
+    $valor: 50px;
+    margin: {
+        right: auto;
+        left: auto;
+        top: $valor;
+        bottom: $valor;
+    }
+    display: block;
+    border-radius: 10px;
+    border: solid black;
+}
+
+.main-div {
+    margin: {
+        right: auto;
+        left: auto;
+        bottom: 50px;
+    }
+    display: table;
+    width: 70%;
+    height: 1em;
+    border: dotted black;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: $white;
+}
+
+.main-div h3 {
+    text-align: center;
+}
+
+
+/* responsive-form */
+
+input[type="text"],
+input[type="password"],
+select {
+    font-size: 18px;
+    width: 100%;
+    padding: 12px;
+    border: 2px solid gainsboro;
+    border-radius: 4px;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.d-block {
+    display: block;
+}
+
+input[type="button"],
+input[type="reset"] {
+    font-size: 18px;
+    color: $white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin: {
+        left: 10px;
+        top: 15px;
+    }
+    font-weight: bold;
+    background-color: black;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.button {
+    float: none !important;
+    margin-bottom: 20px;
+}
+
+.bc-gray {
+    background-color: gray !important;
+}
+
+.avatar-img {
+    $valor: 125px;
+    width: $valor;
+    height: $valor;
+    margin: {
+        top: 10px;
+        bottom: 5px;
+    }
+}
+
+.imagen-div {
+    display: flex;
+}
+
+.imagen-div div {
+    flex: 1;
+    position: relative;
+}
+
+.avatar-div {
+    border: solid black;
+    text-align: center;
+}
+
+.myavatar-div {
+    border: solid darkgray;
+}
+
+.myavatar-div img {
+    $valor: 0px;
+    margin: {
+        top: $valor;
+        bottom: $valor;
+    }
+    position: absolute;
+    $porcentaje: 50%;
+    top: $porcentaje;
+    left: $porcentaje;
+    transform: translate(-$porcentaje, -$porcentaje);
+}
+
+.bcw-cg {
+    background-color: $white !important;
+    color: gray !important;
+}
+
+.private-nav {
+    height: 2.7em;
+}
+
+.private-main {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: $white;
+    text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.mtopzero {
+    margin-top: 0 !important;
+}
+
+fieldset {
+    margin-bottom: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    legend {
+        text-align: left;
+        font-weight: bold;
+    }
+    img {
+        width: 200px;
+        border-radius: 5px;
+    }
+    p {
+        $valor: 10px;
+        margin: {
+            top: $valor;
+            bottom: $valor;
+        }
+    }
+    .usuario-nick {
+        font: {
+            size: 28px;
+            weight: bold;
+        }
+        text-decoration: underline;
+    }
+}
