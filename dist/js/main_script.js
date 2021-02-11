@@ -119,7 +119,7 @@ function validarFormularioRegistro() {
 }
 
 //SI EXISTE LA COOKIE "sesion" REDIRIGE DIRECTAMENTE SEGÚN SU VALOR
-var valor_cookie = leerUnaCookie("sesion");
+var valor_cookie = obtenerCookie("sesion");
 if (valor_cookie == "admin") {
     location.href = "private/admin";
 } else if (valor_cookie == "user") {
@@ -138,7 +138,7 @@ if (valor_cookie == "admin") {
         var valor_login_password = document.getElementById("login_password").value;
         if (valor_login_correo != "" && valor_login_password != "") {
             if (valor_login_correo == "admin" && valor_login_password == "admin") {
-                establecerUnaCookie("sesion", "admin", 3);
+                establecerCookie("sesion", "admin", 3);
                 location.href = "private/admin";
             } else {
                 if (window.indexedDB) {
@@ -148,15 +148,18 @@ if (valor_cookie == "admin") {
                         var bd = evento.target.result;
                         var transaccion = bd.transaction(bd.objectStoreNames, "readwrite");
                         var almacenUsuarios = transaccion.objectStore("usuarios");
-                        var peticionGetAll = almacenUsuarios.getAll();
+                        var peticionGetAllUsuarios = almacenUsuarios.getAll();
+                        var almacenCartas = transaccion.objectStore("cartas");
+                        var peticionGetAllCartas = almacenCartas.getAll();
 
-                        peticionGetAll.onsuccess = function() {
-                            var valores = peticionGetAll.result;
+                        peticionGetAllUsuarios.onsuccess = function() {
+                            var valores = peticionGetAllUsuarios.result;
                             for (usuario in valores) {
-                                // console.log(valores[usuario]);
                                 if (valor_login_correo == valores[usuario].correo && valor_login_password == valores[usuario].password) {
                                     flag = true;
                                     var u = {
+                                        cartas: valores[usuario].cartas,
+                                        cartas_repetidas: valores[usuario].cartas_repetidas,
                                         correo: valores[usuario].correo,
                                         imagen: valores[usuario].imagen,
                                         nick: valores[usuario].nick,
@@ -165,20 +168,31 @@ if (valor_cookie == "admin") {
                                         password: valores[usuario].password,
                                         saldo: valores[usuario].saldo,
                                         sexo: valores[usuario].sexo,
-                                        uuid: valores[usuario].uuid,
-                                        cartas: valores[usuario].cartas,
-                                        cartas_repetidas: valores[usuario].cartas_repetidas
+                                        uuid: valores[usuario].uuid
                                     };
-                                    // console.log(JSON.stringify(u));
-                                    establecerClaveValor("datos_json", JSON.stringify(u));
+                                    establecerLS("usuario_json", JSON.stringify(u));
                                     break;
                                 }
                             }
-                            bd.close();
+                        }
+
+                        peticionGetAllCartas.onsuccess = function() {
                             if (flag) {
-                                establecerUnaCookie("sesion", "user", 3);
+                                var valores = peticionGetAllCartas.result;
+                                var cartas = [];
+                                for (carta in valores) {
+                                    var c = {
+                                        id: valores[carta].id,
+                                        imagen: valores[carta].imagen,
+                                        nombre: valores[carta].nombre
+                                    };
+                                    cartas.push(c);
+                                }
+                                establecerLS("cartas_json", JSON.stringify(cartas));
+                                establecerCookie("sesion", "user", 3);
                                 location.href = "private/user";
                             } else alert("Credenciales inválidas.");
+                            bd.close();
                         }
                     }
                 } else alert("Su navegador no soporta IndexedDB.");
@@ -269,7 +283,9 @@ if (valor_cookie == "admin") {
                                 pais: document.getElementById("pais").value,
                                 sexo: sexo,
                                 imagen: "../../" + document.getElementById("A").getAttribute("src"),
-                                saldo: 0
+                                saldo: 0,
+                                cartas: [],
+                                cartas_repetidas: []
                             });
                             alert("Usuario dado de alta correctamente.");
                             location.href = ".";

@@ -1,24 +1,22 @@
 //SI EXISTE LA COOKIE "sesion" REDIRIGE DIRECTAMENTE SEGÚN SU VALOR
-var valor_cookie = leerUnaCookie("sesion");
+var valor_cookie = obtenerCookie("sesion");
 if (valor_cookie == "user") {
 
     document.getElementById("cerrar_sesion").onclick = function() {
-        //Insertar datos de LS en IndexedDB?
-        eliminarUnaCookieConRuta("sesion");
-        eliminarClaveValor("datos_json");
-        // limpiarLS();
+        eliminarCookie("sesion");
+        limpiarLS();
         alert("Sesión cerrada");
         location.href = "../..";
     };
 
-    var u = JSON.parse(obtenerValor("datos_json"));
-    // console.log(u);
+    var array_cartas = JSON.parse(obtenerLS("cartas_json"));
+    var usuario = JSON.parse(obtenerLS("usuario_json"));
     $(function() {
-        $("#fs_perfil").children().eq(1).attr("src", u.imagen);
-        $("#fs_perfil").children().eq(2).text(u.nick);
-        $("#fs_perfil").children().eq(3).text(u.nombre);
-        $("#fs_perfil").children().eq(4).text(u.pais);
-        $("#fs_perfil").children().eq(5).text(u.correo);
+        $("#fs_perfil").children().eq(1).attr("src", usuario.imagen);
+        $("#fs_perfil").children().eq(2).text(usuario.nick);
+        $("#fs_perfil").children().eq(3).text(usuario.nombre);
+        $("#fs_perfil").children().eq(4).text(usuario.pais);
+        $("#fs_perfil").children().eq(5).text(usuario.correo);
     });
 
 } else location.href = "../..";
