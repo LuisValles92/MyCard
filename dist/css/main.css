@@ -176,4 +176,36 @@ fieldset .usuario-nick {
   text-decoration: underline;
 }
 
+.bi-saldo {
+  background-image: url(../../images/fondosaldo.png);
+  background-size: 100% 100%;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 50%;
+  background: #26a59a;
+  border-radius: 10px;
+  outline: none;
+}
+
+.btn-fs, .b-ingresarsaldo {
+  float: none !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.b-ingresarsaldo:disabled {
+  background-color: gray;
+}
+
+.bc-red {
+  background-color: red !important;
+}
+
+.bi-eliminar {
+  background-image: url(../../images/fondoeliminar.png);
+  background-size: 100% 100%;
+}
+
 /*# sourceMappingURL=main.css.map */

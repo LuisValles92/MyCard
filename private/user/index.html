@@ -24,16 +24,23 @@
             <p>PAÍS</p>
             <p>CORREO</p>
         </fieldset>
-        <!-- <fieldset id="fs_saldo" class="saldo-fs-user">
+        <fieldset id="fs_saldo" class="bi-saldo">
             <legend>SALDO</legend>
             <p>TOTAL: <span>X</span>€</p>
-            <input type="range" class="range-user" id="rango_saldo" onchange="mostrarEuroSaldoUser();" min="0" max="15" step="5" value="0">
+            <input type="range" id="rango_saldo" min="0" max="15" step="5" value="0">
             <p id="euro_saldo">0€</p>
-            <input type="button" class="nav-sub-user cwhite sub-center" id="ingresar_saldo" value="INGRESAR">
-        </fieldset> -->
+            <input type="button" class="b-ingresarsaldo" id="ingresar_saldo" value="INGRESAR">
+        </fieldset>
+        <fieldset class="bi-eliminar">
+            <legend>ELIMINAR</legend>
+            <label>¿DESEA ELIMINAR SU CUENTA DE USUARIO DE FORMA PERMANENTE?</label>
+            <p>* Si elimina su cuenta eliminar&aacute; consigo todas sus cartas adquiridas.</p>
+            <input type="button" class="btn-fs bc-red" id="eliminar_usuario" value="ELIMINAR">
+        </fieldset>
     </main>
     <script type="application/javascript" src="../../dist/js/functions/cookie_script.js"></script>
     <script type="application/javascript" src="../../dist/js/functions/ls_script.js"></script>
+    <script type="application/javascript" src="../../dist/js/functions/db_script.js"></script>
     <script type="application/javascript" src="../../dist/js/user_script.js"></script>
 </body>
 

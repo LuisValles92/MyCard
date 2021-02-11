@@ -127,3 +127,46 @@ function establecerBBDD_DB() {
         };
     } else alert("Su navegador no soporta IndexedDB.");
 }
+
+function establecerSaldoDB(usuario) {
+    if (window.indexedDB) {
+        peticion = window.indexedDB.open("mycard");
+        peticion.onsuccess = function(evento) {
+            var bd = evento.target.result;
+            var transaccion = bd.transaction(bd.objectStoreNames, "readwrite");
+            var almacenUsuarios = transaccion.objectStore("usuarios");
+            almacenUsuarios.put({
+                uuid: usuario.uuid,
+                cartas: usuario.cartas,
+                cartas_repetidas: usuario.cartas_repetidas,
+                correo: usuario.correo,
+                imagen: usuario.imagen,
+                nick: usuario.nick,
+                nombre: usuario.nombre,
+                pais: usuario.pais,
+                password: usuario.password,
+                saldo: usuario.saldo,
+                sexo: usuario.sexo
+            });
+            establecerLS("usuario_json", JSON.stringify(usuario));
+            bd.close();
+            alert("Saldo ingresado correctamente.");
+        }
+    } else alert("Su navegador no soporta IndexedDB.");
+}
+
+function eliminarUsuarioDB(uuid) {
+    if (window.indexedDB) {
+        peticion = window.indexedDB.open("mycard");
+        peticion.onsuccess = function(evento) {
+            var bd = evento.target.result;
+            var transaccion = bd.transaction(bd.objectStoreNames, "readwrite");
+            var almacenUsuarios = transaccion.objectStore("usuarios");
+            var peticionEliminacion = almacenUsuarios.delete(uuid);
+            peticionEliminacion.onsuccess = function() {
+                alert("Usuario eliminado correctamente");
+            }
+            bd.close();
+        }
+    } else alert("Su navegador no soporta IndexedDB.");
+}

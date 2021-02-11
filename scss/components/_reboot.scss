@@ -195,3 +195,38 @@ fieldset {
         text-decoration: underline;
     }
 }
+
+.bi-saldo {
+    background-image: url(../../images/fondosaldo.png);
+    background-size: 100% 100%;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 50%;
+    background: $primary_color;
+    border-radius: 10px;
+    outline: none;
+}
+
+.btn-fs {
+    float: none !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.b-ingresarsaldo {
+    @extend .btn-fs;
+    &:disabled {
+        background-color: gray;
+    }
+}
+
+.bc-red {
+    background-color: red !important;
+}
+
+.bi-eliminar {
+    background-image: url(../../images/fondoeliminar.png);
+    background-size: 100% 100%;
+}
