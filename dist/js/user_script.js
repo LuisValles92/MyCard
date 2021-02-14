@@ -1,17 +1,57 @@
+function mostrarContenidoInicio() {
+    $(function() {
+        $("#fs_eliminar").hide();
+    });
+}
+
+function cerrarSesion() {
+    eliminarCookie("sesion");
+    limpiarLS();
+    location.href = "../..";
+}
+
+function marcarActivo(element) {
+    var htmlcollection_input = document.getElementsByTagName("input");
+    for (let i = 0; i < htmlcollection_input.length; i++) {
+        if (htmlcollection_input.item(i).isSameNode(element)) {
+            htmlcollection_input.item(i).classList.add("bcw-cb");
+        } else {
+            htmlcollection_input.item(i).classList.remove("bcw-cb");
+        }
+    }
+}
+
+function mostrarContenidoEliminar() {
+    marcarActivo(this);
+    $(function() {
+        $("#fs_perfil").hide();
+        $("#fs_saldo").hide();
+        $("#fs_eliminar").show();
+    });
+}
+
+function mostrarContenidoPerfilySaldo() {
+    marcarActivo(this);
+    $(function() {
+        $("#fs_perfil").show();
+        $("#fs_saldo").show();
+        $("#fs_eliminar").hide();
+    });
+}
+
 //SI EXISTE LA COOKIE "sesion" REDIRIGE DIRECTAMENTE SEGÚN SU VALOR
 var valor_cookie = obtenerCookie("sesion");
 if (valor_cookie == "user") {
 
-    function cerrarSesion() {
-        eliminarCookie("sesion");
-        limpiarLS();
-        location.href = "../..";
-    }
+    mostrarContenidoInicio();
 
     document.getElementById("cerrar_sesion").onclick = function() {
         cerrarSesion();
         alert("Sesión cerrada");
     }
+
+    document.getElementById("mostrarEliminar").addEventListener("click", mostrarContenidoEliminar);
+    document.getElementById("mostrarPerfilySaldo").addEventListener("click", mostrarContenidoPerfilySaldo);
 
     var array_cartas = JSON.parse(obtenerLS("cartas_json"));
     var usuario = JSON.parse(obtenerLS("usuario_json"));
