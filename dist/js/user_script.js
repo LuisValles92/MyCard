@@ -1,5 +1,7 @@
 function mostrarContenidoInicio() {
     $(function() {
+        $("#btn_sobres").hide();
+        $("#fs_sobres").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -26,7 +28,26 @@ function mostrarContenidoEliminar() {
     $(function() {
         $("#fs_perfil").hide();
         $("#fs_saldo").hide();
+        $("#btn_sobres").hide();
+        $("#fs_sobres").hide();
         $("#fs_eliminar").show();
+    });
+}
+
+function mostrarContenidoSobresyCartas() {
+    marcarActivo(this);
+    $(function() {
+        $("#fs_perfil").hide();
+        $("#fs_saldo").hide();
+        $("#btn_sobres").show();
+        $("#fs_sobres").hide();
+        $("#fs_eliminar").hide();
+    });
+}
+
+function mostrarContenidoSobres() {
+    $(function() {
+        $("#fs_sobres").toggle("display");
     });
 }
 
@@ -35,6 +56,8 @@ function mostrarContenidoPerfilySaldo() {
     $(function() {
         $("#fs_perfil").show();
         $("#fs_saldo").show();
+        $("#btn_sobres").hide();
+        $("#fs_sobres").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -51,6 +74,8 @@ if (valor_cookie == "user") {
     }
 
     document.getElementById("mostrarEliminar").addEventListener("click", mostrarContenidoEliminar);
+    document.getElementById("mostrarSobresyCartas").addEventListener("click", mostrarContenidoSobresyCartas);
+    document.getElementById("btn_sobres").addEventListener("click", mostrarContenidoSobres);
     document.getElementById("mostrarPerfilySaldo").addEventListener("click", mostrarContenidoPerfilySaldo);
 
     var array_cartas = JSON.parse(obtenerLS("cartas_json"));

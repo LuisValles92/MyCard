@@ -235,3 +235,29 @@ input[type=range] {
     background-image: url(../../images/fondoeliminar.png);
     background-size: 100% 100%;
 }
+
+.botones {
+    color: $white;
+    background-image: linear-gradient(to right, $primary_color, $secondary_color);
+    box-shadow: 2px 5px 5px $white;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 2px 5px 5px $secondary_color;
+    }
+    i {
+        font-size: 50px;
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+
+.mb {
+    margin-bottom: 30px;
+}

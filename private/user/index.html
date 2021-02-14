@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="../../images/icon.PNG">
     <link rel="stylesheet" type="text/css" href="../../dist/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Librería jQuery -->
     <script type="application/javascript" src="../../resources/jquery-3.5.1.js"></script>
 </head>
@@ -15,6 +16,7 @@
     <nav class="private-nav">
         <input class="mtopzero" type="button" id="cerrar_sesion" value="CERRAR SESIÓN">
         <input class="mtopzero" type="button" id="mostrarEliminar" value="ELIMINAR">
+        <input class="mtopzero" type="button" id="mostrarSobresyCartas" value="SOBRES / CARTAS">
         <input class="mtopzero bcw-cb" type="button" id="mostrarPerfilySaldo" value="PERFIL / SALDO">
     </nav>
     <main class="private-main">
@@ -32,6 +34,12 @@
             <input type="range" id="rango_saldo" min="0" max="15" step="5" value="0">
             <p id="euro_saldo">0€</p>
             <input type="button" class="b-ingresarsaldo" id="ingresar_saldo" value="INGRESAR">
+        </fieldset>
+        <button id="btn_sobres" class="botones"><i class="material-icons">payment</i></button>
+        <fieldset id="fs_sobres">
+            <legend>SOBRES</legend>
+
+            <input type="button" class="btn-fs" id="comprar_sobre" value="COMPRAR">
         </fieldset>
         <fieldset id="fs_eliminar" class="bi-eliminar">
             <legend>ELIMINAR</legend>
