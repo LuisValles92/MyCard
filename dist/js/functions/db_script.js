@@ -151,6 +151,7 @@ function establecerSaldoDB(usuario) {
             establecerLS("usuario_json", JSON.stringify(usuario));
             bd.close();
             alert("Saldo ingresado correctamente.");
+            location.href = ".";
         }
     } else alert("Su navegador no soporta IndexedDB.");
 }

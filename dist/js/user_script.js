@@ -5,12 +5,12 @@ if (valor_cookie == "user") {
     function cerrarSesion() {
         eliminarCookie("sesion");
         limpiarLS();
-        alert("Sesión cerrada");
         location.href = "../..";
     }
 
     document.getElementById("cerrar_sesion").onclick = function() {
         cerrarSesion();
+        alert("Sesión cerrada");
     }
 
     var array_cartas = JSON.parse(obtenerLS("cartas_json"));
@@ -39,10 +39,15 @@ if (valor_cookie == "user") {
         $("#ingresar_saldo").click(function() {
             usuario.saldo += parseFloat($("#rango_saldo").val());
             establecerSaldoDB(usuario);
-            //Actualizar saldo de la pagina
         });
-        //ELIMINAR
+        //ELIMINAR (DIALOG)
         $("#eliminar_usuario").click(function() {
+            document.getElementById("eliminar_dialog").showModal();
+        });
+        $("#cancelar_dialog").click(function() {
+            document.getElementById("eliminar_dialog").close();
+        });
+        $("#confirmar_dialog").click(function() {
             eliminarUsuarioDB(usuario.uuid);
             cerrarSesion();
         });

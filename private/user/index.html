@@ -37,6 +37,13 @@
             <p>* Si elimina su cuenta eliminar&aacute; consigo todas sus cartas adquiridas.</p>
             <input type="button" class="btn-fs bc-red" id="eliminar_usuario" value="ELIMINAR">
         </fieldset>
+        <dialog id="eliminar_dialog">
+            <form method="dialog">
+                <p>¿Está seguro de que desea eliminar su cuenta?</p>
+                <input type="button" class="bc-red" id="confirmar_dialog" value="Confirmar">
+                <input type="button" id="cancelar_dialog" value="Cancelar">
+            </form>
+        </dialog>
     </main>
     <script type="application/javascript" src="../../dist/js/functions/cookie_script.js"></script>
     <script type="application/javascript" src="../../dist/js/functions/ls_script.js"></script>
