@@ -504,6 +504,106 @@ function establecerBBDD_DB() {
     } else alert("Su navegador no soporta IndexedDB.");
 }
 
+function listarCartas() {
+    $("table").show();
+    $("table").html("");
+    if (window.indexedDB) {
+        peticion = window.indexedDB.open("mycard");
+        peticion.onsuccess = function(evento) {
+            var bd = evento.target.result;
+            var transaccion = bd.transaction(bd.objectStoreNames, "readwrite");
+            var almacenCartas = transaccion.objectStore("cartas");
+            var peticionGetAll = almacenCartas.getAll();
+
+            peticionGetAll.onsuccess = function() {
+                var valores = peticionGetAll.result;
+                var cabecera_html = "<tr><td class='gray'; colspan=3>RESULTADO/S: " + valores.length + " CARTA/S DISPONIBLE/S</td></tr><tr><th class='gray';>ID</th><th class='gray';>NOMBRE</th><th class='gray';>IMAGEN</th></tr>";
+                $("table").html(cabecera_html);
+                for (carta in valores) {
+                    var nodofila = document.createElement("tr");
+                    var nodocelda_id = document.createElement("td");
+                    var nodocelda_nombre = document.createElement("td");
+                    var nodoimagen = document.createElement("img");
+                    var nodocelda_imagen = document.createElement("td");
+                    nodocelda_id.textContent = valores[carta].id;
+                    nodocelda_nombre.textContent = valores[carta].nombre;
+                    nodoimagen.setAttribute("src", valores[carta].imagen);
+                    nodoimagen.setAttribute("alt", valores[carta].nombre);
+                    nodoimagen.className = "imagen-carta";
+                    nodocelda_imagen.appendChild(nodoimagen);
+                    nodofila.appendChild(nodocelda_id);
+                    nodofila.appendChild(nodocelda_nombre);
+                    nodofila.appendChild(nodocelda_imagen);
+                    $("table").append(nodofila);
+                }
+                bd.close();
+            }
+        }
+    } else alert("Su navegador no soporta IndexedDB.");
+}
+
+function listarUsuarios() {
+    $("table").show();
+    $("table").html("");
+    if (window.indexedDB) {
+        peticion = window.indexedDB.open("mycard");
+        peticion.onsuccess = function(evento) {
+            var bd = evento.target.result;
+            var transaccion = bd.transaction(bd.objectStoreNames, "readwrite");
+            var almacenUsuarios = transaccion.objectStore("usuarios");
+            var peticionGetAll = almacenUsuarios.getAll();
+
+            peticionGetAll.onsuccess = function() {
+                var valores = peticionGetAll.result;
+                var cabecera_html = "<tr><td class='gray'; colspan=11>RESULTADO/S: " + valores.length + " USUARIO/S DISPONIBLE/S</td></tr><tr><th class='gray';>UUID</th><th class='gray';>CORREO</th><th class='gray';>NICK</th><th class='gray';>NOMBRE</th><th class='gray';>PAÍS</th><th class='gray';>SEXO</th><th class='gray';>PASSWORD</th><th class='gray';>SALDO</th><th class='gray';>NUM. CARTAS</th><th class='gray';>NUM. CARTAS REPETIDAS</th><th class='gray';>IMAGEN</th></tr>";
+                $("table").html(cabecera_html);
+                for (usuario in valores) {
+                    var nodofila = document.createElement("tr");
+                    var nodocelda_uuid = document.createElement("td");
+                    var nodocelda_correo = document.createElement("td");
+                    var nodocelda_nick = document.createElement("td");
+                    var nodocelda_nombre = document.createElement("td");
+                    var nodocelda_pais = document.createElement("td");
+                    var nodocelda_sexo = document.createElement("td");
+                    var nodocelda_password = document.createElement("td");
+                    var nodocelda_saldo = document.createElement("td");
+                    var nodocelda_cartas = document.createElement("td");
+                    var nodocelda_cartas_repetidas = document.createElement("td");
+                    var nodoimagen = document.createElement("img");
+                    var nodocelda_imagen = document.createElement("td");
+                    nodocelda_uuid.textContent = valores[usuario].uuid;
+                    nodocelda_correo.textContent = valores[usuario].correo;
+                    nodocelda_nick.textContent = valores[usuario].nick;
+                    nodocelda_nombre.textContent = valores[usuario].nombre;
+                    nodocelda_pais.textContent = valores[usuario].pais;
+                    nodocelda_sexo.textContent = valores[usuario].sexo;
+                    nodocelda_password.textContent = valores[usuario].password;
+                    nodocelda_saldo.textContent = valores[usuario].saldo + "€";
+                    nodocelda_cartas.textContent = valores[usuario].cartas.length;
+                    nodocelda_cartas_repetidas.textContent = valores[usuario].cartas_repetidas.length;
+                    nodoimagen.setAttribute("src", valores[usuario].imagen);
+                    nodoimagen.setAttribute("alt", valores[usuario].nick);
+                    nodoimagen.style.marginTop = "5px";
+                    nodocelda_imagen.appendChild(nodoimagen);
+                    nodofila.appendChild(nodocelda_uuid);
+                    nodofila.appendChild(nodocelda_correo);
+                    nodofila.appendChild(nodocelda_nick);
+                    nodofila.appendChild(nodocelda_nombre);
+                    nodofila.appendChild(nodocelda_pais);
+                    nodofila.appendChild(nodocelda_sexo);
+                    nodofila.appendChild(nodocelda_password);
+                    nodofila.appendChild(nodocelda_saldo);
+                    nodofila.appendChild(nodocelda_cartas);
+                    nodofila.appendChild(nodocelda_cartas_repetidas);
+                    nodofila.appendChild(nodocelda_imagen);
+                    $("table").append(nodofila);
+                }
+                bd.close();
+            }
+        }
+    } else alert("Su navegador no soporta IndexedDB.");
+}
+
 function establecerUsuarioDB(usuario) {
     establecerLS("usuario_json", JSON.stringify(usuario));
     if (window.indexedDB) {

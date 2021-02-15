@@ -10,4 +10,14 @@ if (valor_cookie == "admin") {
     document.getElementById("crear_bbdd").onclick = function() {
         establecerBBDD_DB();
     };
+
+    $(function() {
+        $("#listar_cartas").click(function() {
+            listarCartas();
+        });
+        $("#listar_usuarios").click(function() {
+            listarUsuarios();
+        });
+        $("table").hide();
+    });
 } else location.href = "../..";
