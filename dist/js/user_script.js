@@ -183,7 +183,7 @@ if (valor_cookie == "user") {
             }
         });
         $("#ingresar_saldo").click(function() {
-            usuario.saldo += parseFloat($("#rango_saldo").val());
+            usuario.saldo += $("#rango_saldo").val();
             establecerUsuarioDB(usuario);
             actualizarSaldoEnPantalla();
             alert("Saldo ingresado correctamente.");
@@ -209,9 +209,11 @@ if (valor_cookie == "user") {
                 precio = 3;
                 numero_cartas = 5;
             }
-            console.log(usuario.saldo + " - " + precio + " = " + (usuario.saldo - precio));
+            console.log(usuario.saldo + " - " + precio + " = " + usuario.saldo - precio);
             $("#resultado_sobre").html("");
             if (precio > usuario.saldo) {
+                $(".resultados-div").html("");
+                $(".resultados-div").css("display", "none");
                 alert("No posee suficiente saldo en su cuenta para comprar este sobre.");
             } else {
                 usuario.saldo -= precio;
@@ -247,6 +249,18 @@ if (valor_cookie == "user") {
         mostrarCartas();
         //CARTAS REPETIDAS
         mostrarCartasRepetidas();
+        $("#descartar_mazo_repetido").click(function() {
+            var valor_descarte = 1 / 10;
+            var numero_descartes = usuario.cartas_repetidas.length;
+            usuario.saldo += valor_descarte * numero_descartes;
+            usuario.cartas_repetidas = [];
+            establecerUsuarioDB(usuario);
+            mostrarCartasRepetidas();
+            actualizarSaldoEnPantalla();
+            $("#mazo_cartas_repetidas").html("");
+            $("#mazo_cartas_repetidas").hide();
+            alert("Ha descartado " + numero_descartes + " cartas a " + valor_descarte + "€ cada una, su saldo se ha incrementado con " + valor_descarte * numero_descartes + "€.")
+        });
     });
 
 } else location.href = "../..";
