@@ -62,6 +62,10 @@ function mostrarContenidoPerfilySaldo() {
     });
 }
 
+function actualizarSaldoEnPantalla() {
+    document.getElementById("fs_saldo").children[1].children[0].textContent = usuario.saldo;
+}
+
 //SI EXISTE LA COOKIE "sesion" REDIRIGE DIRECTAMENTE SEGÚN SU VALOR
 var valor_cookie = obtenerCookie("sesion");
 if (valor_cookie == "user") {
@@ -103,7 +107,9 @@ if (valor_cookie == "user") {
         });
         $("#ingresar_saldo").click(function() {
             usuario.saldo += parseFloat($("#rango_saldo").val());
-            establecerSaldoDB(usuario);
+            establecerUsuarioDB(usuario);
+            actualizarSaldoEnPantalla();
+            alert("Saldo ingresado correctamente.");
         });
         //ELIMINAR (DIALOG)
         $("#eliminar_usuario").click(function() {
@@ -115,6 +121,48 @@ if (valor_cookie == "user") {
         $("#confirmar_dialog").click(function() {
             eliminarUsuarioDB(usuario.uuid);
             cerrarSesion();
+        });
+        //SOBRES
+        $("#comprar_sobre").click(function() {
+            var precio, numero_cartas;
+            if (document.getElementById("sobre_normal_radio").checked) {
+                precio = 2;
+                numero_cartas = 3;
+            } else {
+                precio = 3;
+                numero_cartas = 5;
+            }
+            console.log(usuario.saldo + " - " + precio + " = " + (usuario.saldo - precio));
+            $("#resultado_sobre").html("");
+            if (precio > usuario.saldo) {
+                alert("No posee suficiente saldo en su cuenta para comprar este sobre.");
+            } else {
+                usuario.saldo -= precio;
+                actualizarSaldoEnPantalla();
+                alert("Sobre adquirido correctamente.");
+                //Por índice del array
+                var array_resultado_sobre = [];
+                for (let i = 0; i < numero_cartas; i++) {
+                    do {
+                        var numero_aleatorio = Math.floor(Math.random() * (array_cartas.length - 0) + 0);
+                    } while (array_resultado_sobre.includes(numero_aleatorio));
+                    array_resultado_sobre.push(numero_aleatorio);
+                }
+                console.log(array_resultado_sobre);
+                $(".resultados-div").css("display", "block");
+                array_resultado_sobre.forEach(x => {
+                    var elemento_carta = document.createElement("img");
+                    elemento_carta.setAttribute("src", array_cartas[x].imagen);
+                    elemento_carta.setAttribute("alt", array_cartas[x].nombre);
+                    $("#resultado_sobre").append(elemento_carta);
+                    if (usuario.cartas.includes(x)) {
+                        usuario.cartas_repetidas.push(x);
+                        //Distintivo de carta repetida
+                        elemento_carta.style.borderBottom = "solid yellow";
+                    } else usuario.cartas.push(x);
+                });
+                establecerUsuarioDB(usuario);
+            }
         });
     });
 

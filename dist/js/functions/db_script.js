@@ -128,7 +128,8 @@ function establecerBBDD_DB() {
     } else alert("Su navegador no soporta IndexedDB.");
 }
 
-function establecerSaldoDB(usuario) {
+function establecerUsuarioDB(usuario) {
+    establecerLS("usuario_json", JSON.stringify(usuario));
     if (window.indexedDB) {
         peticion = window.indexedDB.open("mycard");
         peticion.onsuccess = function(evento) {
@@ -148,10 +149,7 @@ function establecerSaldoDB(usuario) {
                 saldo: usuario.saldo,
                 sexo: usuario.sexo
             });
-            establecerLS("usuario_json", JSON.stringify(usuario));
             bd.close();
-            alert("Saldo ingresado correctamente.");
-            location.href = ".";
         }
     } else alert("Su navegador no soporta IndexedDB.");
 }

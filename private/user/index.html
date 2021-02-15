@@ -38,8 +38,24 @@
         <button id="btn_sobres" class="botones"><i class="material-icons">payment</i></button>
         <fieldset id="fs_sobres">
             <legend>SOBRES</legend>
-
+            <div class="contenedor-div">
+                <div class="subcontenedor-div b-primary">
+                    <span class="header-span">Normal</span>
+                    <img src="../../images/sobre_normal.PNG" alt="Sobre normal">
+                    <input checked="checked" type="radio" id="sobre_normal_radio" name="sobre">
+                    <span>3 cartas</span>
+                    <span>2€</span>
+                </div>
+                <div class="subcontenedor-div b-secondary">
+                    <span class="header-span">Premium</span>
+                    <img src="../../images/sobre_premium.PNG" alt="Sobre premium">
+                    <input type="radio" id="sobre_premium_radio" name="sobre">
+                    <span>5 cartas</span>
+                    <span>3€</span>
+                </div>
+            </div>
             <input type="button" class="btn-fs" id="comprar_sobre" value="COMPRAR">
+            <div class="resultados-div" id="resultado_sobre"></div>
         </fieldset>
         <fieldset id="fs_eliminar" class="bi-eliminar">
             <legend>ELIMINAR</legend>

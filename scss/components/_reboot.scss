@@ -112,13 +112,12 @@ input[type="reset"] {
     }
 }
 
-.imagen-div {
+.contenedor-div {
     display: flex;
-}
-
-.imagen-div div {
-    flex: 1;
-    position: relative;
+    div {
+        flex: 1;
+        position: relative;
+    }
 }
 
 .avatar-div {
@@ -238,7 +237,7 @@ input[type=range] {
 
 .botones {
     color: $white;
-    background-image: linear-gradient(to right, $primary_color, $secondary_color);
+    background-image: linear-gradient(to bottom, $primary_color, $secondary_color);
     box-shadow: 2px 5px 5px $white;
     border-radius: 50%;
     width: 70px;
@@ -260,4 +259,54 @@ input[type=range] {
 
 .mb {
     margin-bottom: 30px;
+}
+
+.subcontenedor-div {
+    margin-bottom: 10px;
+    img {
+        display: block;
+        $valor: 250px;
+        width: $valor;
+        height: $valor;
+        margin: {
+            top: 10px;
+            bottom: 5px;
+            right: auto;
+            left: auto;
+        }
+    }
+    span {
+        display: block;
+        margin: {
+            top: 12px;
+            bottom: 12px;
+        }
+    }
+}
+
+.b-primary {
+    border: solid $primary_color;
+}
+
+.b-secondary {
+    border: solid $secondary_color;
+}
+
+.header-span {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: larger;
+}
+
+.resultados-div {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    background-image: url(../../images/resultadosdelsobre.png);
+    background-size: 100% 100%;
+    img {
+        width: 300px;
+        margin: 20px;
+    }
 }
