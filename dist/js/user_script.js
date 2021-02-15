@@ -2,6 +2,8 @@ function mostrarContenidoInicio() {
     $(function() {
         $("#btn_sobres").hide();
         $("#fs_sobres").hide();
+        $("#btn_cartas").hide();
+        $("#fs_cartas").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -30,6 +32,8 @@ function mostrarContenidoEliminar() {
         $("#fs_saldo").hide();
         $("#btn_sobres").hide();
         $("#fs_sobres").hide();
+        $("#btn_cartas").hide();
+        $("#fs_cartas").hide();
         $("#fs_eliminar").show();
     });
 }
@@ -41,6 +45,8 @@ function mostrarContenidoSobresyCartas() {
         $("#fs_saldo").hide();
         $("#btn_sobres").show();
         $("#fs_sobres").hide();
+        $("#btn_cartas").show();
+        $("#fs_cartas").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -51,6 +57,12 @@ function mostrarContenidoSobres() {
     });
 }
 
+function mostrarContenidoCartas() {
+    $(function() {
+        $("#fs_cartas").toggle("display");
+    });
+}
+
 function mostrarContenidoPerfilySaldo() {
     marcarActivo(this);
     $(function() {
@@ -58,12 +70,35 @@ function mostrarContenidoPerfilySaldo() {
         $("#fs_saldo").show();
         $("#btn_sobres").hide();
         $("#fs_sobres").hide();
+        $("#btn_cartas").hide();
+        $("#fs_cartas").hide();
         $("#fs_eliminar").hide();
     });
 }
 
 function actualizarSaldoEnPantalla() {
     document.getElementById("fs_saldo").children[1].children[0].textContent = usuario.saldo;
+}
+
+function mostrarCartas() {
+    if (usuario.cartas.length == 0) {
+        var elemento_parrafo = document.createElement("p");
+        elemento_parrafo.textContent = "El usuario no posee ninguna carta aún.";
+        elemento_parrafo.style.marginBottom = "20px";
+        $("#fs_cartas").append(elemento_parrafo);
+    } else {
+        //VACIAR MAZO
+        $(".mazo-div").html("");
+        //ELIMINAR PARRAFO (SI EXISTE)
+        $("#fs_cartas > p").remove();
+        $(".mazo-div").css("display", "block");
+        usuario.cartas.forEach(x => {
+            var elemento_carta = document.createElement("img");
+            elemento_carta.setAttribute("src", array_cartas[x].imagen);
+            elemento_carta.setAttribute("alt", array_cartas[x].nombre);
+            $("#mazo_cartas").append(elemento_carta);
+        });
+    }
 }
 
 //SI EXISTE LA COOKIE "sesion" REDIRIGE DIRECTAMENTE SEGÚN SU VALOR
@@ -80,6 +115,7 @@ if (valor_cookie == "user") {
     document.getElementById("mostrarEliminar").addEventListener("click", mostrarContenidoEliminar);
     document.getElementById("mostrarSobresyCartas").addEventListener("click", mostrarContenidoSobresyCartas);
     document.getElementById("btn_sobres").addEventListener("click", mostrarContenidoSobres);
+    document.getElementById("btn_cartas").addEventListener("click", mostrarContenidoCartas);
     document.getElementById("mostrarPerfilySaldo").addEventListener("click", mostrarContenidoPerfilySaldo);
 
     var array_cartas = JSON.parse(obtenerLS("cartas_json"));
@@ -162,8 +198,11 @@ if (valor_cookie == "user") {
                     } else usuario.cartas.push(x);
                 });
                 establecerUsuarioDB(usuario);
+                mostrarCartas();
             }
         });
+        //CARTAS
+        mostrarCartas();
     });
 
 } else location.href = "../..";

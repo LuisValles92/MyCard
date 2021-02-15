@@ -213,6 +213,7 @@ input[type=range] {
 }
 
 .botones {
+  display: block;
   color: #f5f5f5;
   background-image: linear-gradient(to bottom, #26a59a, #673bb7);
   box-shadow: 2px 5px 5px #f5f5f5;
@@ -271,14 +272,27 @@ input[type=range] {
 }
 
 .resultados-div {
+  background-image: url(../../images/resultadosdelsobre.png);
   display: none;
   text-align: center;
   margin-top: 10px;
   padding-bottom: 30px;
-  background-image: url(../../images/resultadosdelsobre.png);
   background-size: 100% 100%;
 }
 .resultados-div img {
+  width: 300px;
+  margin: 20px;
+}
+
+.mazo-div {
+  background-image: url(../../images/ringdelmazo.PNG);
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 30px;
+  background-size: 100% 100%;
+}
+.mazo-div img {
   width: 300px;
   margin: 20px;
 }

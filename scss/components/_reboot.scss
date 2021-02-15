@@ -236,6 +236,7 @@ input[type=range] {
 }
 
 .botones {
+    display: block;
     color: $white;
     background-image: linear-gradient(to bottom, $primary_color, $secondary_color);
     box-shadow: 2px 5px 5px $white;
@@ -298,15 +299,24 @@ input[type=range] {
     font-size: larger;
 }
 
-.resultados-div {
+@mixin resultados-mazo {
     display: none;
     text-align: center;
     margin-top: 10px;
     padding-bottom: 30px;
-    background-image: url(../../images/resultadosdelsobre.png);
     background-size: 100% 100%;
     img {
         width: 300px;
         margin: 20px;
     }
+}
+
+.resultados-div {
+    background-image: url(../../images/resultadosdelsobre.png);
+    @include resultados-mazo();
+}
+
+.mazo-div {
+    background-image: url(../../images/ringdelmazo.PNG);
+    @include resultados-mazo();
 }
