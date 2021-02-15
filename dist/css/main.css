@@ -225,6 +225,7 @@ input[type=range] {
   margin-top: 20px;
   outline: none;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .botones:hover {
   box-shadow: 2px 5px 5px #673bb7;
@@ -233,10 +234,6 @@ input[type=range] {
   font-size: 50px;
   text-align: center;
   vertical-align: middle;
-}
-
-.mb {
-  margin-bottom: 30px;
 }
 
 .subcontenedor-div {
@@ -293,6 +290,19 @@ input[type=range] {
   background-size: 100% 100%;
 }
 .mazo-div img {
+  width: 300px;
+  margin: 20px;
+}
+
+.mazo-repetido-div {
+  background-image: url(../../images/ringdelmazorepetido.PNG);
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 30px;
+  background-size: 100% 100%;
+}
+.mazo-repetido-div img {
   width: 300px;
   margin: 20px;
 }

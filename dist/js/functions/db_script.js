@@ -167,5 +167,16 @@ function eliminarUsuarioDB(uuid) {
             }
             bd.close();
         }
+        peticion.onerror = function(evento) {
+            alert("EVENTO: error\nNo se ha abierto la BBDD\nSe produce al intentar abrir la BBDD con una versión anterior a la existente.");
+        };
+
+        peticion.onblocked = function(evento) {
+            alert("EVENTO: blocked\nBBDD bloqueada\nSe produce al intentar abrir la BBDD con una nueva versión y esta no fue antes cerrada.");
+        };
+
+        peticion.onupgradeneeded = function(evento) {
+            alert("EVENTO: upgradeneeded");
+        };
     } else alert("Su navegador no soporta IndexedDB.");
 }

@@ -248,6 +248,7 @@ input[type=range] {
     margin-top: 20px;
     outline: none;
     cursor: pointer;
+    margin-bottom: 20px;
     &:hover {
         box-shadow: 2px 5px 5px $secondary_color;
     }
@@ -256,10 +257,6 @@ input[type=range] {
         text-align: center;
         vertical-align: middle;
     }
-}
-
-.mb {
-    margin-bottom: 30px;
 }
 
 .subcontenedor-div {
@@ -299,7 +296,7 @@ input[type=range] {
     font-size: larger;
 }
 
-@mixin resultados-mazo {
+@mixin resultados-mazos {
     display: none;
     text-align: center;
     margin-top: 10px;
@@ -313,10 +310,15 @@ input[type=range] {
 
 .resultados-div {
     background-image: url(../../images/resultadosdelsobre.png);
-    @include resultados-mazo();
+    @include resultados-mazos();
 }
 
 .mazo-div {
     background-image: url(../../images/ringdelmazo.PNG);
-    @include resultados-mazo();
+    @include resultados-mazos();
+}
+
+.mazo-repetido-div {
+    background-image: url(../../images/ringdelmazorepetido.PNG);
+    @include resultados-mazos();
 }

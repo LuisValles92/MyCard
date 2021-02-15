@@ -4,6 +4,8 @@ function mostrarContenidoInicio() {
         $("#fs_sobres").hide();
         $("#btn_cartas").hide();
         $("#fs_cartas").hide();
+        $("#btn_cartas_repetidas").hide();
+        $("#fs_cartas_repetidas").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -34,6 +36,8 @@ function mostrarContenidoEliminar() {
         $("#fs_sobres").hide();
         $("#btn_cartas").hide();
         $("#fs_cartas").hide();
+        $("#btn_cartas_repetidas").hide();
+        $("#fs_cartas_repetidas").hide();
         $("#fs_eliminar").show();
     });
 }
@@ -47,6 +51,8 @@ function mostrarContenidoSobresyCartas() {
         $("#fs_sobres").hide();
         $("#btn_cartas").show();
         $("#fs_cartas").hide();
+        $("#btn_cartas_repetidas").show();
+        $("#fs_cartas_repetidas").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -63,6 +69,12 @@ function mostrarContenidoCartas() {
     });
 }
 
+function mostrarContenidoCartasRepetidas() {
+    $(function() {
+        $("#fs_cartas_repetidas").toggle("display");
+    });
+}
+
 function mostrarContenidoPerfilySaldo() {
     marcarActivo(this);
     $(function() {
@@ -72,6 +84,8 @@ function mostrarContenidoPerfilySaldo() {
         $("#fs_sobres").hide();
         $("#btn_cartas").hide();
         $("#fs_cartas").hide();
+        $("#btn_cartas_repetidas").hide();
+        $("#fs_cartas_repetidas").hide();
         $("#fs_eliminar").hide();
     });
 }
@@ -101,6 +115,32 @@ function mostrarCartas() {
     }
 }
 
+function mostrarCartasRepetidas() {
+    if (usuario.cartas_repetidas.length == 0) {
+        var elemento_parrafo = document.createElement("p");
+        elemento_parrafo.textContent = "El usuario no posee ninguna carta repetida aún.";
+        elemento_parrafo.style.marginBottom = "20px";
+        //PARA QUE NO SE DUPLIQUE EL PÁRRAFO
+        $("#fs_cartas_repetidas p").last().remove();
+        $("#fs_cartas_repetidas").append(elemento_parrafo);
+        $("#descartar_mazo_repetido").hide();
+    } else {
+        //VACIAR MAZO
+        $(".mazo-repetido-div").html("");
+        //ELIMINAR PARRAFO (SI EXISTE)
+        $("#fs_cartas_repetidas > p").remove();
+        //MUESTRO SIEMPRE EL BOTON DE DESCARTAR (POR SI ESTA OCULTO)
+        $("#descartar_mazo_repetido").show();
+        $(".mazo-repetido-div").css("display", "block");
+        usuario.cartas_repetidas.forEach(x => {
+            var elemento_carta = document.createElement("img");
+            elemento_carta.setAttribute("src", array_cartas[x].imagen);
+            elemento_carta.setAttribute("alt", array_cartas[x].nombre);
+            $("#mazo_cartas_repetidas").append(elemento_carta);
+        });
+    }
+}
+
 //SI EXISTE LA COOKIE "sesion" REDIRIGE DIRECTAMENTE SEGÚN SU VALOR
 var valor_cookie = obtenerCookie("sesion");
 if (valor_cookie == "user") {
@@ -116,6 +156,7 @@ if (valor_cookie == "user") {
     document.getElementById("mostrarSobresyCartas").addEventListener("click", mostrarContenidoSobresyCartas);
     document.getElementById("btn_sobres").addEventListener("click", mostrarContenidoSobres);
     document.getElementById("btn_cartas").addEventListener("click", mostrarContenidoCartas);
+    document.getElementById("btn_cartas_repetidas").addEventListener("click", mostrarContenidoCartasRepetidas);
     document.getElementById("mostrarPerfilySaldo").addEventListener("click", mostrarContenidoPerfilySaldo);
 
     var array_cartas = JSON.parse(obtenerLS("cartas_json"));
@@ -199,10 +240,13 @@ if (valor_cookie == "user") {
                 });
                 establecerUsuarioDB(usuario);
                 mostrarCartas();
+                mostrarCartasRepetidas();
             }
         });
         //CARTAS
         mostrarCartas();
+        //CARTAS REPETIDAS
+        mostrarCartasRepetidas();
     });
 
 } else location.href = "../..";
