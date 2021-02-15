@@ -183,7 +183,7 @@ if (valor_cookie == "user") {
             }
         });
         $("#ingresar_saldo").click(function() {
-            usuario.saldo += $("#rango_saldo").val();
+            usuario.saldo += parseInt($("#rango_saldo").val());
             establecerUsuarioDB(usuario);
             actualizarSaldoEnPantalla();
             alert("Saldo ingresado correctamente.");
@@ -209,7 +209,7 @@ if (valor_cookie == "user") {
                 precio = 3;
                 numero_cartas = 5;
             }
-            console.log(usuario.saldo + " - " + precio + " = " + usuario.saldo - precio);
+            console.log(usuario.saldo + " - " + precio + " = " + (usuario.saldo - precio));
             $("#resultado_sobre").html("");
             if (precio > usuario.saldo) {
                 $(".resultados-div").html("");
@@ -252,7 +252,7 @@ if (valor_cookie == "user") {
         $("#descartar_mazo_repetido").click(function() {
             var valor_descarte = 1 / 10;
             var numero_descartes = usuario.cartas_repetidas.length;
-            usuario.saldo += valor_descarte * numero_descartes;
+            usuario.saldo += (valor_descarte * numero_descartes);
             usuario.cartas_repetidas = [];
             establecerUsuarioDB(usuario);
             mostrarCartasRepetidas();
