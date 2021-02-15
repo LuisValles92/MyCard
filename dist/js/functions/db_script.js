@@ -166,6 +166,7 @@ function eliminarUsuarioDB(uuid) {
                 alert("Usuario eliminado correctamente");
             }
             bd.close();
+            location.href = "../..";
         }
         peticion.onerror = function(evento) {
             alert("EVENTO: error\nNo se ha abierto la BBDD\nSe produce al intentar abrir la BBDD con una versión anterior a la existente.");

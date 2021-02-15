@@ -13,7 +13,6 @@ function mostrarContenidoInicio() {
 function cerrarSesion() {
     eliminarCookie("sesion");
     limpiarLS();
-    location.href = "../..";
 }
 
 function marcarActivo(element) {
@@ -150,6 +149,7 @@ if (valor_cookie == "user") {
     document.getElementById("cerrar_sesion").onclick = function() {
         cerrarSesion();
         alert("Sesión cerrada");
+        location.href = "../..";
     }
 
     document.getElementById("mostrarEliminar").addEventListener("click", mostrarContenidoEliminar);
@@ -183,7 +183,8 @@ if (valor_cookie == "user") {
             }
         });
         $("#ingresar_saldo").click(function() {
-            usuario.saldo += parseInt($("#rango_saldo").val());
+            //Para evitar decimales largos
+            usuario.saldo += parseFloat((parseInt($("#rango_saldo").val())).toFixed(1));
             establecerUsuarioDB(usuario);
             actualizarSaldoEnPantalla();
             alert("Saldo ingresado correctamente.");
@@ -209,14 +210,16 @@ if (valor_cookie == "user") {
                 precio = 3;
                 numero_cartas = 5;
             }
-            console.log(usuario.saldo + " - " + precio + " = " + (usuario.saldo - precio));
+            //Para evitar decimales largos
+            var resultado = parseFloat((usuario.saldo - precio).toFixed(1));
+            console.log(usuario.saldo + " - " + precio + " = " + resultado);
             $("#resultado_sobre").html("");
             if (precio > usuario.saldo) {
                 $(".resultados-div").html("");
                 $(".resultados-div").css("display", "none");
                 alert("No posee suficiente saldo en su cuenta para comprar este sobre.");
             } else {
-                usuario.saldo -= precio;
+                usuario.saldo = resultado;
                 actualizarSaldoEnPantalla();
                 alert("Sobre adquirido correctamente.");
                 //Por índice del array
@@ -250,16 +253,18 @@ if (valor_cookie == "user") {
         //CARTAS REPETIDAS
         mostrarCartasRepetidas();
         $("#descartar_mazo_repetido").click(function() {
-            var valor_descarte = 1 / 10;
+            var valor_descarte = 0.10;
             var numero_descartes = usuario.cartas_repetidas.length;
-            usuario.saldo += (valor_descarte * numero_descartes);
+            //Para evitar decimales largos
+            var resultado = parseFloat((usuario.saldo + (valor_descarte * numero_descartes)).toFixed(1));
+            usuario.saldo = resultado;
             usuario.cartas_repetidas = [];
             establecerUsuarioDB(usuario);
             mostrarCartasRepetidas();
             actualizarSaldoEnPantalla();
             $("#mazo_cartas_repetidas").html("");
             $("#mazo_cartas_repetidas").hide();
-            alert("Ha descartado " + numero_descartes + " cartas a " + valor_descarte + "€ cada una, su saldo se ha incrementado con " + valor_descarte * numero_descartes + "€.")
+            alert("Ha descartado " + numero_descartes + " cartas a " + valor_descarte + "€ cada una, su saldo se ha incrementado.");
         });
     });
 
