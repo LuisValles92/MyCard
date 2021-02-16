@@ -264,7 +264,7 @@ if (valor_cookie == "user") {
             actualizarSaldoEnPantalla();
             $("#mazo_cartas_repetidas").html("");
             $("#mazo_cartas_repetidas").hide();
-            alert("Ha descartado " + numero_descartes + " cartas a " + valor_descarte + "€ cada una, su saldo se ha incrementado.");
+            alert("Ha descartado " + numero_descartes + " carta/s a " + valor_descarte + "€ cada una, su saldo se ha incrementado.");
         });
     });
 
