@@ -116,8 +116,14 @@ table {
     font-size: 22px;
 }
 
-.gray {
-    background-color: gray;
+.purple {
+    background-color: $secondary_color;
+    font-weight: bold;
+    color: $white;
+}
+
+.green {
+    background-color: $primary_color;
     font-weight: bold;
     color: $white;
 }
@@ -271,6 +277,14 @@ input[type=range] {
 
 .bc-red {
     background-color: red !important;
+}
+
+.bc-purple {
+    background-color: $secondary_color !important;
+}
+
+.bc-green {
+    background-color: $primary_color !important;
 }
 
 .bi-eliminar {

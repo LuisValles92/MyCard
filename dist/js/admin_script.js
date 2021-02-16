@@ -11,6 +11,14 @@ if (valor_cookie == "admin") {
         establecerBBDD_DB();
     };
 
+    document.getElementById("eliminar_bbdd").onclick = function() {
+        $(function() {
+            $("table").html("");
+            $("table").hide();
+        });
+        eliminarBBDD_DB();
+    };
+
     $(function() {
         $("#listar_cartas").click(function() {
             listarCartas();

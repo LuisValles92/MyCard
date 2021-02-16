@@ -27,6 +27,6 @@ function establecerCookie(nombre, valor, dias = 0) {
 }
 
 function eliminarCookie(nombre) {
-    //document.cookie = nombre + "=; max-age=0;path=/;";
-    document.cookie = nombre + "=; max-age=0;path=/MyCard;";
+    document.cookie = nombre + "=; max-age=0;path=/;";
+    //document.cookie = nombre + "=; max-age=0;path=/MyCard;";
 }

@@ -504,6 +504,21 @@ function establecerBBDD_DB() {
     } else alert("Su navegador no soporta IndexedDB.");
 }
 
+function eliminarBBDD_DB() {
+    var nombre = "mycard";
+    if (window.indexedDB) {
+        var peticion = window.indexedDB.deleteDatabase(nombre);
+        peticion.onsuccess = function(evento) {
+            //Eliminar una BBDD no existente no produce error
+            alert("BBDD eliminada correctamente.");
+        }
+
+        peticion.onblocked = function(evento) {
+            alert("EVENTO: blocked\nBBDD bloqueada\nSe produce al intentar abrir la BBDD con una nueva versión y esta no fue antes cerrada.");
+        }
+    } else alert("Su navegador no soporta IndexedDB.");
+}
+
 function listarCartas() {
     $("table").show();
     $("table").html("");
@@ -517,7 +532,7 @@ function listarCartas() {
 
             peticionGetAll.onsuccess = function() {
                 var valores = peticionGetAll.result;
-                var cabecera_html = "<tr><td class='gray'; colspan=3>RESULTADO/S: " + valores.length + " CARTA/S DISPONIBLE/S</td></tr><tr><th class='gray';>ID</th><th class='gray';>NOMBRE</th><th class='gray';>IMAGEN</th></tr>";
+                var cabecera_html = "<tr><td class='purple'; colspan=3>RESULTADO/S: " + valores.length + " CARTA/S DISPONIBLE/S</td></tr><tr><th class='purple';>ID</th><th class='purple';>NOMBRE</th><th class='purple';>IMAGEN</th></tr>";
                 $("table").html(cabecera_html);
                 for (carta in valores) {
                     var nodofila = document.createElement("tr");
@@ -555,7 +570,7 @@ function listarUsuarios() {
 
             peticionGetAll.onsuccess = function() {
                 var valores = peticionGetAll.result;
-                var cabecera_html = "<tr><td class='gray'; colspan=11>RESULTADO/S: " + valores.length + " USUARIO/S DISPONIBLE/S</td></tr><tr><th class='gray';>UUID</th><th class='gray';>CORREO</th><th class='gray';>NICK</th><th class='gray';>NOMBRE</th><th class='gray';>PAÍS</th><th class='gray';>SEXO</th><th class='gray';>PASSWORD</th><th class='gray';>SALDO</th><th class='gray';>NUM. CARTAS</th><th class='gray';>NUM. CARTAS REPETIDAS</th><th class='gray';>IMAGEN</th></tr>";
+                var cabecera_html = "<tr><td class='green'; colspan=11>RESULTADO/S: " + valores.length + " USUARIO/S DISPONIBLE/S</td></tr><tr><th class='green';>UUID</th><th class='green';>CORREO</th><th class='green';>NICK</th><th class='green';>NOMBRE</th><th class='green';>PAÍS</th><th class='green';>SEXO</th><th class='green';>PASSWORD</th><th class='green';>SALDO</th><th class='green';>NUM. CARTAS</th><th class='green';>NUM. CARTAS REPETIDAS</th><th class='green';>IMAGEN</th></tr>";
                 $("table").html(cabecera_html);
                 for (usuario in valores) {
                     var nodofila = document.createElement("tr");
